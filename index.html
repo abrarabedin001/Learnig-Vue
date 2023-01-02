@@ -11,7 +11,7 @@
 </head >
 <body class="h-full grid place-items-center ">
     <div id="app">
-        <section v-show="incompleteAssignments.length" >
+        <!-- <section v-show="incompleteAssignments.length" >
             <h2 class="font-bold mb-2">Incompleted</h2>
             <ul>
                 <li v-for="assignment in incompleteAssignments" :key="assignment.id">
@@ -35,12 +35,31 @@
 
                 </li>
             </ul>
-        </section>
+        </section> -->
+        <app-button>
+            Submit
+        </app-button>
         
         
     </div>
 <script>
     let app = {
+
+        components:{
+            'app-button':{
+                template:
+                   `
+                    <button class='bg-gray-200 hover:bg-gray-400 rounded px-5 py-5'>
+                       <slot/>
+                        </button>
+                   `
+                
+                ,
+                mounted(){
+                    // alert('hello');
+                }
+            }
+        },
         data(){
             return{
                 assignments:[
