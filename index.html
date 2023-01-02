@@ -1,51 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <style>
-        html,body{
-            height:100%;
-        }
-        body{
-            display:grid;
-            place-items:center;
-        }
-        .text-red{
-            color:red;
-        }
-        .text-green{
-            color: green;
-        }
-    </style>
-</head>
-<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+</head >
+<body class="h-full grid place-items-center ">
     <div id="app">
-        <button :class="active?'text-red':'text-green'" @click="toggle">
-            Button
-        </button>
+        <section v-show="incompleteAssignments.length" >
+            <h2 class="font-bold mb-2">Incompleted</h2>
+            <ul>
+                <li v-for="assignment in incompleteAssignments" :key="assignment.id">
+                    <label >
+                        {{ assignment.name }}
+                        <input type="checkbox" v-model="assignment.completed" >
+                    </label>
+
+                </li>
+            </ul>
+        </section>
+       
+        <section v-show="completedAssignments.length">
+            <h2 class="font-bold mb-2 mt-8">Completed</h2>
+            <ul>
+                <li v-for="assignment in completedAssignments" :key="assignment.id">
+                    <label >
+                        {{ assignment.name }}
+                        <input type="checkbox" v-model="assignment.completed">
+                    </label>
+
+                </li>
+            </ul>
+        </section>
+        
         
     </div>
 <script>
-    Vue.createApp({
+    let app = {
         data(){
             return{
-                greeting: 'hello world',
-                buttonClass: 'text-green',
-                active:true,
-
+                assignments:[
+                  {id:'1',name:'work 1',completed: false},  
+                  {id:'2',name:'work 2',completed: false},  
+                  {id:'3',name:'work 3',completed: false},  
+                  {id:'4',name:'work 4',completed: false},  
+                ]
             }
-        },
-        methods:{
-            toggle(){
-                this.active=!this.active;
+        },   
+
+        computed:{
+            completedAssignments(){
+                return this.assignments.filter(a=>a.completed)
+            },
+            incompleteAssignments(){
+                return this.assignments.filter(a=>!a.completed)
             }
         }
-        
-    }).mount('#app')
+    }
+
+    Vue.createApp(app).mount('#app')
 </script>
 </body>
 
