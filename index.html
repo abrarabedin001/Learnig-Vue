@@ -8,9 +8,23 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div ind="app"></div>
+    <div id="app">
+        <p>
+            <input type="text" v-model="greeting">
+        </p>
+        <p>
+            {{ greeting }}
+        </p>
+        
+    </div>
 <script>
-    
+    Vue.createApp({
+        data(){
+            return{
+                greeting: 'hello world'
+            }
+        }
+    }).mount('#app')
 </script>
 </body>
 
