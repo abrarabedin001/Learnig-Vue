@@ -3,9 +3,16 @@ export default {
     components:{ AssignmentList },
     template:
     `
-    <section class="space-y-6" >
+    <section class="space-y-6 bg-gray-200" >
         <AssignmentList :assignments = "filter.incomplete" title="Incomplete"></AssignmentList>
         <AssignmentList :assignments = "filter.completed" title="Completed"></AssignmentList>
+        <form @submit.prevent="add">
+            <div>
+                <input v-model="filler" class="p-2"/>
+                <button type="submit" class="bg-white p-2 border-l"> Submit</button>
+            </div>
+        </form>    
+
     </section>
     
        
@@ -13,6 +20,7 @@ export default {
     `,
     data(){
         return{
+            filler:"hello there.",
             assignments:[
               {id:'1',name:'work 1',completed: false},  
               {id:'2',name:'work 2',completed: false},  
@@ -30,6 +38,18 @@ export default {
             
         }
     
+    },
+    methods:{
+        add(e){
+            e.preventDefault();
+            this.assignments.push({
+                id: String(this.assignments.length+1),
+                name:this.filler,
+                completed:false
+            })
+            this.filler = "hello there."
+            // alert('hi there');
+        }
     }
     
 }
