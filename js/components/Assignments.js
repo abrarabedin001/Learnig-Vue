@@ -1,51 +1,44 @@
 import AssignmentList from "./AssignmentList.js";
 import AssignmentCreate from "./AssignmentCreate.js";
-export default {
-    components:{ AssignmentList , AssignmentCreate},
-    template:
-    `
-    <section class="space-y-6 bg-gray-200" >
-        <AssignmentList :assignments = "filter.incomplete" title="Incomplete"></AssignmentList>
-        <AssignmentList :assignments = "filter.completed" title="Completed"></AssignmentList>
-        <AssignmentCreate :assignments = "assignments" @add="add"></AssignmentCreate>
 
-    </section>
-    
-       
-        
-    `,
-    data(){
-        return{
-            filler:"hello there.",
-            assignments:[
-              {id:'1',name:'work 1',completed: false},  
-              {id:'2',name:'work 2',completed: false},  
-              {id:'3',name:'work 3',completed: false},  
-              {id:'4',name:'work 4',completed: false},  
-            ]
-        }
-    },   
-    computed:{
-        filter(){
-            return{
-                completed:  this.assignments.filter(a=>a.completed),
-                incomplete:  this.assignments.filter(a=>!a.completed)
-             }
+export default {
+    components: { AssignmentList, AssignmentCreate },
+
+    template: `
+        <section class="space-y-6">
+            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
+            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
             
+            <assignment-create @add="add"></assignment-create> 
+        </section>
+    `,
+
+    data() {
+        return {
+            assignments: [
+                { name: 'Finish project', complete: false, id: 1 },
+                { name: 'Read Chapter 4', complete: false, id: 2 },
+                { name: 'Turn in Homework', complete: false, id: 3 },
+            ],
         }
-    
     },
-    methods:{
-        add(name){
-            // e.preventDefault();
+
+    computed: {
+        filters() {
+            return {
+                inProgress: this.assignments.filter(assignment => ! assignment.complete),
+                completed: this.assignments.filter(assignment => assignment.complete)
+            };
+        }
+    },
+
+    methods: {
+        add(name) {
             this.assignments.push({
-                id: String(this.assignments.length+1),
-                name:name,
-                completed:false
-            })
-            this.newAssignment = "hello there."
-            // alert('hi there');
+                name: name,
+                completed: false,
+                id: this.assignments.length + 1
+            });
         }
     }
-    
 }
