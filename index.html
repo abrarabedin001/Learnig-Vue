@@ -11,66 +11,14 @@
 </head >
 <body class="h-full grid place-items-center ">
     <div id="app">
-        <!-- <section v-show="incompleteAssignments.length" >
-            <h2 class="font-bold mb-2">Incompleted</h2>
-            <ul>
-                <li v-for="assignment in incompleteAssignments" :key="assignment.id">
-                    <label >
-                        {{ assignment.name }}
-                        <input type="checkbox" v-model="assignment.completed" >
-                    </label>
-
-                </li>
-            </ul>
-        </section>
-       
-        <section v-show="completedAssignments.length">
-            <h2 class="font-bold mb-2 mt-8">Completed</h2>
-            <ul>
-                <li v-for="assignment in completedAssignments" :key="assignment.id">
-                    <label >
-                        {{ assignment.name }}
-                        <input type="checkbox" v-model="assignment.completed">
-                    </label>
-
-                </li>
-            </ul>
-        </section> -->
-        <app-button>
-            Submit
-        </app-button>
+        
+        
         
         
     </div>
 <script type="module">
-    import AppButton from "./js/components/AppButton.js"
-    let app = {
-
-        components:{
-            'app-button':AppButton
-        },
-        data(){
-            return{
-                assignments:[
-                  {id:'1',name:'work 1',completed: false},  
-                  {id:'2',name:'work 2',completed: false},  
-                  {id:'3',name:'work 3',completed: false},  
-                  {id:'4',name:'work 4',completed: false},  
-                ]
-            }
-        },   
-
-        computed:{
-            completedAssignments(){
-                return this.assignments.filter(a=>a.completed)
-            },
-            incompleteAssignments(){
-                return this.assignments.filter(a=>!a.completed)
-            }
-        }
-    }
-
-    Vue.createApp(app).mount('#app')
+    import App from "./js/components/App.js"
+    Vue.createApp(App).mount('#app')
 </script>
 </body>
 
