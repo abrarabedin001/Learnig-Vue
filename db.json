@@ -1,0 +1,20 @@
+{
+  "assignments": [
+    { 
+        "name": "Finish project", 
+        "complete": false, 
+        "id": 1, 
+        "tag": "math" 
+    },{ 
+        "name": "task 2", 
+        "complete": false, 
+        "id": 2, 
+        "tag": "Science" 
+    },{ 
+        "name": "task 3", 
+        "complete": false, 
+        "id": 3, 
+        "tag": "Social" 
+    }
+  ]
+}
